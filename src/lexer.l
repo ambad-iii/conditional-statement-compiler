@@ -1,6 +1,8 @@
 %{
 #include "parser.tab.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 %}
 
 %option noyywrap yylineno
@@ -34,19 +36,27 @@
 ";"             { return SEMICOLON; }
 
 [0-9]+(\.[0-9]+)? {
+                    yylval.number = atof(yytext);
                     return NUMBER;
                   }
 
 [a-zA-Z_][a-zA-Z0-9_]* {
+                          yylval.text = malloc(yyleng + 1);
+                          if (yylval.text == NULL) {
+                              fprintf(stderr, "Memory allocation failed\n");
+                              exit(EXIT_FAILURE);
+                          }
+                          strcpy(yylval.text, yytext);
                           return IDENTIFIER;
                         }
 
-[ \t\r]+        { /* Ignore spaces and tabs */ }
-\n              { /* Track line numbers */ }
+[ \t\r]+        { /* Ignore whitespace */ }
+\n              { /* Line number tracked by Flex */ }
 
 .               {
-                    printf("Lexical Error at line %d: Invalid character '%s'\n",
-                           yylineno, yytext);
+                    fprintf(stderr,
+                            "Lexical Error at line %d: Invalid character '%s'\n",
+                            yylineno, yytext);
                     return INVALID;
                 }
 
