@@ -1,4 +1,4 @@
-# Conditional Statement Compiler
+ Conditional Statement Compiler
 
 A Compiler Design mini-project that implements a **compiler front-end** for conditional statements using **Flex (Lex), YACC/Bison, C, and Flask**. The compiler recognizes `if`, `if-else`, and nested conditional statements, validates their syntax, generates an Abstract Syntax Tree (AST), performs semantic analysis, and displays the results through a web-based interface.
 
