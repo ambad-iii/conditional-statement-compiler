@@ -67,7 +67,7 @@
 
 
 /* First part of user prologue.  */
-#line 2 "src/parser.y"
+#line 1 "src/parser.y"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -532,9 +532,9 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    52,    52,    60,    65,    73,    74,    75,    79,    83,
-      90,    94,   101,   109,   114,   118,   122,   126,   130,   134,
-     138,   142,   146,   150,   154,   158,   162,   166,   170,   174
+       0,    51,    51,    59,    64,    72,    73,    74,    78,    82,
+      89,    93,   100,   108,   113,   117,   121,   125,   129,   133,
+     137,   141,   145,   149,   153,   157,   161,   165,   169,   173
 };
 #endif
 
@@ -1140,7 +1140,7 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: statement_list  */
-#line 53 "src/parser.y"
+#line 52 "src/parser.y"
       {
           ast_root = ast_program((yyvsp[0].node));
           (yyval.node) = ast_root;
@@ -1149,7 +1149,7 @@ yyreduce:
     break;
 
   case 3: /* statement_list: statement  */
-#line 61 "src/parser.y"
+#line 60 "src/parser.y"
       {
           (yyval.node) = NULL;
           ast_append(&(yyval.node), (yyvsp[0].node));
@@ -1158,7 +1158,7 @@ yyreduce:
     break;
 
   case 4: /* statement_list: statement_list statement  */
-#line 66 "src/parser.y"
+#line 65 "src/parser.y"
       {
           (yyval.node) = (yyvsp[-1].node);
           ast_append(&(yyval.node), (yyvsp[0].node));
@@ -1167,25 +1167,25 @@ yyreduce:
     break;
 
   case 5: /* statement: conditional_statement  */
-#line 73 "src/parser.y"
+#line 72 "src/parser.y"
                             { (yyval.node) = (yyvsp[0].node); }
 #line 1173 "parser.tab.c"
     break;
 
   case 6: /* statement: assignment_statement  */
-#line 74 "src/parser.y"
+#line 73 "src/parser.y"
                            { (yyval.node) = (yyvsp[0].node); }
 #line 1179 "parser.tab.c"
     break;
 
   case 7: /* statement: block  */
-#line 75 "src/parser.y"
+#line 74 "src/parser.y"
                            { (yyval.node) = (yyvsp[0].node); }
 #line 1185 "parser.tab.c"
     break;
 
   case 8: /* conditional_statement: IF LPAREN expression RPAREN statement  */
-#line 80 "src/parser.y"
+#line 79 "src/parser.y"
       {
           (yyval.node) = ast_if((yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1193,7 +1193,7 @@ yyreduce:
     break;
 
   case 9: /* conditional_statement: IF LPAREN expression RPAREN statement ELSE statement  */
-#line 84 "src/parser.y"
+#line 83 "src/parser.y"
       {
           (yyval.node) = ast_if_else((yyvsp[-4].node), (yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1201,7 +1201,7 @@ yyreduce:
     break;
 
   case 10: /* block: LBRACE statement_list RBRACE  */
-#line 91 "src/parser.y"
+#line 90 "src/parser.y"
       {
           (yyval.node) = ast_block((yyvsp[-1].node));
       }
@@ -1209,7 +1209,7 @@ yyreduce:
     break;
 
   case 11: /* block: LBRACE RBRACE  */
-#line 95 "src/parser.y"
+#line 94 "src/parser.y"
       {
           (yyval.node) = ast_block(NULL);
       }
@@ -1217,7 +1217,7 @@ yyreduce:
     break;
 
   case 12: /* assignment_statement: IDENTIFIER ASSIGN expression SEMICOLON  */
-#line 102 "src/parser.y"
+#line 101 "src/parser.y"
       {
           (yyval.node) = ast_assign((yyvsp[-3].text), (yyvsp[-1].node));
           free((yyvsp[-3].text));
@@ -1226,7 +1226,7 @@ yyreduce:
     break;
 
   case 13: /* expression: IDENTIFIER  */
-#line 110 "src/parser.y"
+#line 109 "src/parser.y"
       {
           (yyval.node) = ast_identifier((yyvsp[0].text));
           free((yyvsp[0].text));
@@ -1235,7 +1235,7 @@ yyreduce:
     break;
 
   case 14: /* expression: NUMBER  */
-#line 115 "src/parser.y"
+#line 114 "src/parser.y"
       {
           (yyval.node) = ast_number((yyvsp[0].number));
       }
@@ -1243,7 +1243,7 @@ yyreduce:
     break;
 
   case 15: /* expression: LPAREN expression RPAREN  */
-#line 119 "src/parser.y"
+#line 118 "src/parser.y"
       {
           (yyval.node) = (yyvsp[-1].node);
       }
@@ -1251,7 +1251,7 @@ yyreduce:
     break;
 
   case 16: /* expression: expression PLUS expression  */
-#line 123 "src/parser.y"
+#line 122 "src/parser.y"
       {
           (yyval.node) = ast_binary("+", (yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1259,7 +1259,7 @@ yyreduce:
     break;
 
   case 17: /* expression: expression MINUS expression  */
-#line 127 "src/parser.y"
+#line 126 "src/parser.y"
       {
           (yyval.node) = ast_binary("-", (yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1267,7 +1267,7 @@ yyreduce:
     break;
 
   case 18: /* expression: expression MULTIPLY expression  */
-#line 131 "src/parser.y"
+#line 130 "src/parser.y"
       {
           (yyval.node) = ast_binary("*", (yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1275,7 +1275,7 @@ yyreduce:
     break;
 
   case 19: /* expression: expression DIVIDE expression  */
-#line 135 "src/parser.y"
+#line 134 "src/parser.y"
       {
           (yyval.node) = ast_binary("/", (yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1283,7 +1283,7 @@ yyreduce:
     break;
 
   case 20: /* expression: expression GT expression  */
-#line 139 "src/parser.y"
+#line 138 "src/parser.y"
       {
           (yyval.node) = ast_binary(">", (yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1291,7 +1291,7 @@ yyreduce:
     break;
 
   case 21: /* expression: expression LT expression  */
-#line 143 "src/parser.y"
+#line 142 "src/parser.y"
       {
           (yyval.node) = ast_binary("<", (yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1299,7 +1299,7 @@ yyreduce:
     break;
 
   case 22: /* expression: expression GE expression  */
-#line 147 "src/parser.y"
+#line 146 "src/parser.y"
       {
           (yyval.node) = ast_binary(">=", (yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1307,7 +1307,7 @@ yyreduce:
     break;
 
   case 23: /* expression: expression LE expression  */
-#line 151 "src/parser.y"
+#line 150 "src/parser.y"
       {
           (yyval.node) = ast_binary("<=", (yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1315,7 +1315,7 @@ yyreduce:
     break;
 
   case 24: /* expression: expression EQ expression  */
-#line 155 "src/parser.y"
+#line 154 "src/parser.y"
       {
           (yyval.node) = ast_binary("==", (yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1323,7 +1323,7 @@ yyreduce:
     break;
 
   case 25: /* expression: expression NE expression  */
-#line 159 "src/parser.y"
+#line 158 "src/parser.y"
       {
           (yyval.node) = ast_binary("!=", (yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1331,7 +1331,7 @@ yyreduce:
     break;
 
   case 26: /* expression: expression AND expression  */
-#line 163 "src/parser.y"
+#line 162 "src/parser.y"
       {
           (yyval.node) = ast_binary("&&", (yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1339,7 +1339,7 @@ yyreduce:
     break;
 
   case 27: /* expression: expression OR expression  */
-#line 167 "src/parser.y"
+#line 166 "src/parser.y"
       {
           (yyval.node) = ast_binary("||", (yyvsp[-2].node), (yyvsp[0].node));
       }
@@ -1347,7 +1347,7 @@ yyreduce:
     break;
 
   case 28: /* expression: NOT expression  */
-#line 171 "src/parser.y"
+#line 170 "src/parser.y"
       {
           (yyval.node) = ast_unary("!", (yyvsp[0].node));
       }
@@ -1355,7 +1355,7 @@ yyreduce:
     break;
 
   case 29: /* expression: MINUS expression  */
-#line 175 "src/parser.y"
+#line 174 "src/parser.y"
       {
           (yyval.node) = ast_unary("-", (yyvsp[0].node));
       }
@@ -1556,7 +1556,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 180 "src/parser.y"
+#line 179 "src/parser.y"
 
 
 void yyerror(const char *s)

@@ -4,9 +4,7 @@ import subprocess
 import tempfile
 import os
 import re
-
 app = Flask(__name__)
-
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 COMPILER = os.path.join(BASE_DIR, "conditional_compiler")
 

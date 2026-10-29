@@ -1,4 +1,3 @@
-
 CC = gcc
 FLEX = flex
 BISON = bison
